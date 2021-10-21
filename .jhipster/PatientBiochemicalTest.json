@@ -1,0 +1,46 @@
+{
+  "name": "PatientBiochemicalTest",
+  "fields": [
+    {
+      "fieldName": "other",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "patient",
+      "otherEntityRelationshipName": "patientBiochemicalTest",
+      "relationshipName": "patient",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "biochemicalTest",
+      "otherEntityRelationshipName": "patientBiochemicalTest",
+      "relationshipName": "biochemicalTest",
+      "otherEntityField": "testName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "measurementType",
+      "otherEntityRelationshipName": "patientBiochemicalTest",
+      "relationshipName": "measurementType",
+      "otherEntityField": "label"
+    }
+  ],
+  "entityTableName": "patient_biochemical_test",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211021175822"
+}

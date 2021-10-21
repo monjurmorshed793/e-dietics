@@ -1,0 +1,474 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-patient-heading" data-cy="PatientCreateUpdateHeading">Create or edit a Patient</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_address">Address</label>
+          <textarea class="form-control" name="address" id="field_address" data-cy="address" formControlName="address"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_hospital">Hospital</label>
+          <input type="text" class="form-control" name="hospital" id="field_hospital" data-cy="hospital" formControlName="hospital" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_admissionDate">Admission Date</label>
+          <div class="input-group">
+            <input
+              id="field_admissionDate"
+              data-cy="admissionDate"
+              type="text"
+              class="form-control"
+              name="admissionDate"
+              ngbDatepicker
+              #admissionDateDp="ngbDatepicker"
+              formControlName="admissionDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="admissionDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_reasonOfAdmission">Reason Of Admission</label>
+          <textarea
+            class="form-control"
+            name="reasonOfAdmission"
+            id="field_reasonOfAdmission"
+            data-cy="reasonOfAdmission"
+            formControlName="reasonOfAdmission"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_wordNo">Word No</label>
+          <input type="text" class="form-control" name="wordNo" id="field_wordNo" data-cy="wordNo" formControlName="wordNo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_bedNo">Bed No</label>
+          <input type="text" class="form-control" name="bedNo" id="field_bedNo" data-cy="bedNo" formControlName="bedNo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_healthCondition">Health Condition</label>
+          <textarea
+            class="form-control"
+            name="healthCondition"
+            id="field_healthCondition"
+            data-cy="healthCondition"
+            formControlName="healthCondition"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_mentalStatus">Mental Status</label>
+          <textarea
+            class="form-control"
+            name="mentalStatus"
+            id="field_mentalStatus"
+            data-cy="mentalStatus"
+            formControlName="mentalStatus"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_age">Age</label>
+          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sex">Sex</label>
+          <select class="form-control" name="sex" formControlName="sex" id="field_sex" data-cy="sex">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let gender of genderValues" [value]="gender">gender</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_weight">Weight</label>
+          <input type="number" class="form-control" name="weight" id="field_weight" data-cy="weight" formControlName="weight" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_weightType">Weight Type</label>
+          <select class="form-control" name="weightType" formControlName="weightType" id="field_weightType" data-cy="weightType">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let weightType of weightTypeValues" [value]="weightType">weightType</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_height">Height</label>
+          <input type="number" class="form-control" name="height" id="field_height" data-cy="height" formControlName="height" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_heightMeasureType">Height Measure Type</label>
+          <select
+            class="form-control"
+            name="heightMeasureType"
+            formControlName="heightMeasureType"
+            id="field_heightMeasureType"
+            data-cy="heightMeasureType"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let heightMeasureType of heightMeasureTypeValues" [value]="heightMeasureType">heightMeasureType</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_ibw">Ibw</label>
+          <input type="number" class="form-control" name="ibw" id="field_ibw" data-cy="ibw" formControlName="ibw" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_bmi">Bmi</label>
+          <input type="number" class="form-control" name="bmi" id="field_bmi" data-cy="bmi" formControlName="bmi" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_recentWeightGainLoss">Recent Weight Gain Loss</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="recentWeightGainLoss"
+            id="field_recentWeightGainLoss"
+            data-cy="recentWeightGainLoss"
+            formControlName="recentWeightGainLoss"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_gainLossMeasure">Gain Loss Measure</label>
+          <input
+            type="number"
+            class="form-control"
+            name="gainLossMeasure"
+            id="field_gainLossMeasure"
+            data-cy="gainLossMeasure"
+            formControlName="gainLossMeasure"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_gainLossTimeFrame">Gain Loss Time Frame</label>
+          <input
+            type="number"
+            class="form-control"
+            name="gainLossTimeFrame"
+            id="field_gainLossTimeFrame"
+            data-cy="gainLossTimeFrame"
+            formControlName="gainLossTimeFrame"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_gainLossType">Gain Loss Type</label>
+          <select class="form-control" name="gainLossType" formControlName="gainLossType" id="field_gainLossType" data-cy="gainLossType">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let gainLossType of gainLossTypeValues" [value]="gainLossType">gainLossType</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_supplementTaken">Supplement Taken</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="supplementTaken"
+            id="field_supplementTaken"
+            data-cy="supplementTaken"
+            formControlName="supplementTaken"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_appetite">Appetite</label>
+          <select class="form-control" name="appetite" formControlName="appetite" id="field_appetite" data-cy="appetite">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let appetiteType of appetiteTypeValues" [value]="appetiteType">appetiteType</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_physicalActivity">Physical Activity</label>
+          <select
+            class="form-control"
+            name="physicalActivity"
+            formControlName="physicalActivity"
+            id="field_physicalActivity"
+            data-cy="physicalActivity"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let physicalActivityType of physicalActivityTypeValues" [value]="physicalActivityType">
+              physicalActivityType
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_monthlyFamilyIncome">Monthly Family Income</label>
+          <input
+            type="number"
+            class="form-control"
+            name="monthlyFamilyIncome"
+            id="field_monthlyFamilyIncome"
+            data-cy="monthlyFamilyIncome"
+            formControlName="monthlyFamilyIncome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_religion">Religion</label>
+          <select class="form-control" name="religion" formControlName="religion" id="field_religion" data-cy="religion">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let religionType of religionTypeValues" [value]="religionType">religionType</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_education">Education</label>
+          <input type="text" class="form-control" name="education" id="field_education" data-cy="education" formControlName="education" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_occupation">Occupation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="occupation"
+            id="field_occupation"
+            data-cy="occupation"
+            formControlName="occupation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_livingStatus">Living Status</label>
+          <input
+            type="text"
+            class="form-control"
+            name="livingStatus"
+            id="field_livingStatus"
+            data-cy="livingStatus"
+            formControlName="livingStatus"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_area">Area</label>
+          <select class="form-control" name="area" formControlName="area" id="field_area" data-cy="area">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let areaType of areaTypeValues" [value]="areaType">areaType</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_estimatedEnergyNeeds">Estimated Energy Needs</label>
+          <input
+            type="text"
+            class="form-control"
+            name="estimatedEnergyNeeds"
+            id="field_estimatedEnergyNeeds"
+            data-cy="estimatedEnergyNeeds"
+            formControlName="estimatedEnergyNeeds"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_calculateEnergyNeeds">Calculate Energy Needs</label>
+          <input
+            type="text"
+            class="form-control"
+            name="calculateEnergyNeeds"
+            id="field_calculateEnergyNeeds"
+            data-cy="calculateEnergyNeeds"
+            formControlName="calculateEnergyNeeds"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalKCal">Total K Cal</label>
+          <input type="number" class="form-control" name="totalKCal" id="field_totalKCal" data-cy="totalKCal" formControlName="totalKCal" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_carbohydrate">Carbohydrate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="carbohydrate"
+            id="field_carbohydrate"
+            data-cy="carbohydrate"
+            formControlName="carbohydrate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_protein">Protein</label>
+          <input type="number" class="form-control" name="protein" id="field_protein" data-cy="protein" formControlName="protein" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_fat">Fat</label>
+          <input type="number" class="form-control" name="fat" id="field_fat" data-cy="fat" formControlName="fat" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_fluid">Fluid</label>
+          <input type="number" class="form-control" name="fluid" id="field_fluid" data-cy="fluid" formControlName="fluid" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_foodRestriction">Food Restriction</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="foodRestriction"
+            id="field_foodRestriction"
+            data-cy="foodRestriction"
+            formControlName="foodRestriction"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nutritionState">Nutrition State</label>
+          <select
+            class="form-control"
+            id="field_nutritionState"
+            data-cy="nutritionState"
+            name="nutritionState"
+            formControlName="nutritionState"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                nutritionStateOption.id === editForm.get('nutritionState')!.value?.id
+                  ? editForm.get('nutritionState')!.value
+                  : nutritionStateOption
+              "
+              *ngFor="let nutritionStateOption of nutritionStatesSharedCollection; trackBy: trackNutritionStateById"
+            >
+              {{ nutritionStateOption.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_activityLevel">Activity Level</label>
+          <select
+            class="form-control"
+            id="field_activityLevel"
+            data-cy="activityLevel"
+            name="activityLevel"
+            formControlName="activityLevel"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                activityLevelOption.id === editForm.get('activityLevel')!.value?.id
+                  ? editForm.get('activityLevel')!.value
+                  : activityLevelOption
+              "
+              *ngFor="let activityLevelOption of activityLevelsSharedCollection; trackBy: trackActivityLevelById"
+            >
+              {{ activityLevelOption.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="field_dietNatures">Diet Natures</label>
+          <select
+            class="form-control"
+            id="field_dietNatures"
+            data-cy="dietNatures"
+            multiple
+            name="dietNatures"
+            formControlName="dietNatures"
+          >
+            <option
+              [ngValue]="getSelectedDietNature(dietNatureOption, editForm.get('dietNatures')!.value)"
+              *ngFor="let dietNatureOption of dietNaturesSharedCollection; trackBy: trackDietNatureById"
+            >
+              {{ dietNatureOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="field_supplements">Supplements</label>
+          <select
+            class="form-control"
+            id="field_supplements"
+            data-cy="supplements"
+            multiple
+            name="supplements"
+            formControlName="supplements"
+          >
+            <option
+              [ngValue]="getSelectedSupplements(supplementsOption, editForm.get('supplements')!.value)"
+              *ngFor="let supplementsOption of supplementsSharedCollection; trackBy: trackSupplementsById"
+            >
+              {{ supplementsOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="field_restrictedFoodCategories">Restricted Food Category</label>
+          <select
+            class="form-control"
+            id="field_restrictedFoodCategories"
+            data-cy="restrictedFoodCategory"
+            multiple
+            name="restrictedFoodCategories"
+            formControlName="restrictedFoodCategories"
+          >
+            <option
+              [ngValue]="getSelectedFoodCategory(foodCategoryOption, editForm.get('restrictedFoodCategories')!.value)"
+              *ngFor="let foodCategoryOption of foodCategoriesSharedCollection; trackBy: trackFoodCategoryById"
+            >
+              {{ foodCategoryOption.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

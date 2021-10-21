@@ -1,0 +1,182 @@
+<div>
+  <h2 id="page-heading" data-cy="PatientHeading">
+    <span>Patients</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-patient"
+        [routerLink]="['/patient/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Patient </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="patients?.length === 0">
+    <span>No patients found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="patients && patients.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="address"><span>Address</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="hospital"><span>Hospital</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="admissionDate"><span>Admission Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="reasonOfAdmission"><span>Reason Of Admission</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="wordNo"><span>Word No</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="bedNo"><span>Bed No</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="healthCondition"><span>Health Condition</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="mentalStatus"><span>Mental Status</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="age"><span>Age</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sex"><span>Sex</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="weight"><span>Weight</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="weightType"><span>Weight Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="height"><span>Height</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="heightMeasureType"><span>Height Measure Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="ibw"><span>Ibw</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="bmi"><span>Bmi</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="recentWeightGainLoss"><span>Recent Weight Gain Loss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="gainLossMeasure"><span>Gain Loss Measure</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="gainLossTimeFrame"><span>Gain Loss Time Frame</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="gainLossType"><span>Gain Loss Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="supplementTaken"><span>Supplement Taken</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="appetite"><span>Appetite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="physicalActivity"><span>Physical Activity</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="monthlyFamilyIncome"><span>Monthly Family Income</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="religion"><span>Religion</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="education"><span>Education</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="occupation"><span>Occupation</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="livingStatus"><span>Living Status</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="area"><span>Area</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="estimatedEnergyNeeds"><span>Estimated Energy Needs</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="calculateEnergyNeeds"><span>Calculate Energy Needs</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="totalKCal"><span>Total K Cal</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="carbohydrate"><span>Carbohydrate</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="protein"><span>Protein</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fat"><span>Fat</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fluid"><span>Fluid</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="foodRestriction"><span>Food Restriction</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nutritionState.label"><span>Nutrition State</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="activityLevel.label"><span>Activity Level</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/patient', patient.id, 'view']">{{ patient.id }}</a>
+          </td>
+          <td>{{ patient.name }}</td>
+          <td>{{ patient.address }}</td>
+          <td>{{ patient.hospital }}</td>
+          <td>{{ patient.admissionDate | formatMediumDate }}</td>
+          <td>{{ patient.reasonOfAdmission }}</td>
+          <td>{{ patient.wordNo }}</td>
+          <td>{{ patient.bedNo }}</td>
+          <td>{{ patient.healthCondition }}</td>
+          <td>{{ patient.mentalStatus }}</td>
+          <td>{{ patient.age }}</td>
+          <td>{{ patient.sex }}</td>
+          <td>{{ patient.weight }}</td>
+          <td>{{ patient.weightType }}</td>
+          <td>{{ patient.height }}</td>
+          <td>{{ patient.heightMeasureType }}</td>
+          <td>{{ patient.ibw }}</td>
+          <td>{{ patient.bmi }}</td>
+          <td>{{ patient.recentWeightGainLoss }}</td>
+          <td>{{ patient.gainLossMeasure }}</td>
+          <td>{{ patient.gainLossTimeFrame }}</td>
+          <td>{{ patient.gainLossType }}</td>
+          <td>{{ patient.supplementTaken }}</td>
+          <td>{{ patient.appetite }}</td>
+          <td>{{ patient.physicalActivity }}</td>
+          <td>{{ patient.monthlyFamilyIncome }}</td>
+          <td>{{ patient.religion }}</td>
+          <td>{{ patient.education }}</td>
+          <td>{{ patient.occupation }}</td>
+          <td>{{ patient.livingStatus }}</td>
+          <td>{{ patient.area }}</td>
+          <td>{{ patient.estimatedEnergyNeeds }}</td>
+          <td>{{ patient.calculateEnergyNeeds }}</td>
+          <td>{{ patient.totalKCal }}</td>
+          <td>{{ patient.carbohydrate }}</td>
+          <td>{{ patient.protein }}</td>
+          <td>{{ patient.fat }}</td>
+          <td>{{ patient.fluid }}</td>
+          <td>{{ patient.foodRestriction }}</td>
+          <td>
+            <div *ngIf="patient.nutritionState">
+              <a [routerLink]="['/nutrition-state', patient.nutritionState?.id, 'view']">{{ patient.nutritionState?.label }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="patient.activityLevel">
+              <a [routerLink]="['/activity-level', patient.activityLevel?.id, 'view']">{{ patient.activityLevel?.label }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/patient', patient.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/patient', patient.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(patient)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="patients && patients.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

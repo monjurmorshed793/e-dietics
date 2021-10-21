@@ -1,0 +1,219 @@
+{
+  "name": "Patient",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "hospital",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "admissionDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "reasonOfAdmission",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "wordNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bedNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "healthCondition",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "mentalStatus",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "sex",
+      "fieldType": "Gender",
+      "fieldValues": "MALE (Male),FEMALE (Female)"
+    },
+    {
+      "fieldName": "weight",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "weightType",
+      "fieldType": "WeightType",
+      "fieldValues": "UNDERWEIGHT (Underweight),NORMAL (Normal),OVERWEIGHT (Overweight),OBESE (Obese)"
+    },
+    {
+      "fieldName": "height",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "heightMeasureType",
+      "fieldType": "HeightMeasureType",
+      "fieldValues": "CM (cm),INCH (inch),FEET (ft)"
+    },
+    {
+      "fieldName": "ibw",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "bmi",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "recentWeightGainLoss",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "gainLossMeasure",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gainLossTimeFrame",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gainLossType",
+      "fieldType": "GainLossType",
+      "fieldValues": "INTENTIONAL (Intentional),UNINTENTIONAL (Unintentional)"
+    },
+    {
+      "fieldName": "supplementTaken",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "appetite",
+      "fieldType": "AppetiteType",
+      "fieldValues": "EXCELLENT (Excellent),GOOD (Good),FAIR (Fair),POOR (Poor)"
+    },
+    {
+      "fieldName": "physicalActivity",
+      "fieldType": "PhysicalActivityType",
+      "fieldValues": "REGULAR (Regular),SEASONAL (Seasonal)"
+    },
+    {
+      "fieldName": "monthlyFamilyIncome",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "religion",
+      "fieldType": "ReligionType",
+      "fieldValues": "MUSLIM (Muslim),HINDU (Hindu),BUDDHIST (Buddhist),CHRISTIANITY (Christianity),JEWS (Jews),OTHERS (Others)"
+    },
+    {
+      "fieldName": "education",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "occupation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "livingStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "area",
+      "fieldType": "AreaType",
+      "fieldValues": "RURAL (Rural),URBAN (Urban)"
+    },
+    {
+      "fieldName": "estimatedEnergyNeeds",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "calculateEnergyNeeds",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalKCal",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "carbohydrate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "protein",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fat",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fluid",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "foodRestriction",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "nutritionState",
+      "otherEntityRelationshipName": "patient",
+      "relationshipName": "nutritionState",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "activityLevel",
+      "otherEntityRelationshipName": "patient",
+      "relationshipName": "activityLevel",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "dietNature",
+      "otherEntityRelationshipName": "patient",
+      "relationshipName": "dietNatures",
+      "otherEntityField": "name",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "supplements",
+      "otherEntityRelationshipName": "patient",
+      "relationshipName": "supplements",
+      "otherEntityField": "name",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "foodCategory",
+      "otherEntityRelationshipName": "foodCategory",
+      "relationshipName": "restrictedFoodCategory",
+      "otherEntityField": "name",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "patient",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211021175821"
+}
