@@ -46,44 +46,52 @@ enum AreaType{
     URBAN(Urban)
 }
 
+@EntityPackage(config)
 entity FoodCategory{
     name String,
     description TextBlob
 }
 
+@EntityPackage(config)
 entity MeasurementType{
     label String required,
     description String
 }
 
+@EntityPackage(config)
 entity BiochemicalTest{
     testName String,
     //defaultMeasurementType measurementType,
     description TextBlob
 }
 
+@EntityPackage(config)
 entity Supplements{
     name String,
     description TextBlob
 }
 
+@EntityPackage(config)
 entity DietNature{
     name String,
     description TextBlob
 }
 
+@EntityPackage(config)
 entity NutritionState{
     order Integer,
     label String required,
     note TextBlob
 }
 
+@EntityPackage(config)
 entity ActivityLevel{
     order Integer,
     label String required,
     note TextBlob
 }
 
+@EntityPackage(patient)
 entity Patient{
     name String,
     address TextBlob,
@@ -109,7 +117,7 @@ entity Patient{
     supplementTaken Boolean,
     appetite AppetiteType,
     physicalActivity PhysicalActivityType,
-    monthlyFamilyIncome,
+    monthlyFamilyIncome BigDecimal,
     religion ReligionType,
     education String,
     occupation String,
@@ -125,6 +133,7 @@ entity Patient{
     foodRestriction Boolean,
 }
 
+@EntityPackage(patient)
 entity PatientBiochemicalTest{
     // patient
     // BiochemicalTest
@@ -146,7 +155,7 @@ relationship ManyToOne{
 relationship ManyToMany{
     Patient{dietNatures(name)} to DietNature{patient(name)} ,
     Patient{supplements(name)} to Supplements{patient(name)},
-    Patient{restrictedFoodCategory(name)} to FoodCategory(name)}
+    Patient{restrictedFoodCategory(name)} to FoodCategory{foodCategory(name)}
 }
 
 

@@ -108,6 +108,7 @@
   },
   "defaultProject": "edietics",
   "cli": {
+    "analytics": "a538a283-92e1-4895-a3ce-7a5cc5c8ca8a",
     "packageManager": "npm"
   }
 }

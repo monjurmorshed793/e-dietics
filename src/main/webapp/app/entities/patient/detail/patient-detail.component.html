@@ -1,0 +1,213 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="patient">
+      <h2 data-cy="patientDetailsHeading"><span>Patient</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ patient.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ patient.name }}</span>
+        </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+          <span>{{ patient.address }}</span>
+        </dd>
+        <dt><span>Hospital</span></dt>
+        <dd>
+          <span>{{ patient.hospital }}</span>
+        </dd>
+        <dt><span>Admission Date</span></dt>
+        <dd>
+          <span>{{ patient.admissionDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Reason Of Admission</span></dt>
+        <dd>
+          <span>{{ patient.reasonOfAdmission }}</span>
+        </dd>
+        <dt><span>Word No</span></dt>
+        <dd>
+          <span>{{ patient.wordNo }}</span>
+        </dd>
+        <dt><span>Bed No</span></dt>
+        <dd>
+          <span>{{ patient.bedNo }}</span>
+        </dd>
+        <dt><span>Health Condition</span></dt>
+        <dd>
+          <span>{{ patient.healthCondition }}</span>
+        </dd>
+        <dt><span>Mental Status</span></dt>
+        <dd>
+          <span>{{ patient.mentalStatus }}</span>
+        </dd>
+        <dt><span>Age</span></dt>
+        <dd>
+          <span>{{ patient.age }}</span>
+        </dd>
+        <dt><span>Sex</span></dt>
+        <dd>
+          <span>{{ patient.sex }}</span>
+        </dd>
+        <dt><span>Weight</span></dt>
+        <dd>
+          <span>{{ patient.weight }}</span>
+        </dd>
+        <dt><span>Weight Type</span></dt>
+        <dd>
+          <span>{{ patient.weightType }}</span>
+        </dd>
+        <dt><span>Height</span></dt>
+        <dd>
+          <span>{{ patient.height }}</span>
+        </dd>
+        <dt><span>Height Measure Type</span></dt>
+        <dd>
+          <span>{{ patient.heightMeasureType }}</span>
+        </dd>
+        <dt><span>Ibw</span></dt>
+        <dd>
+          <span>{{ patient.ibw }}</span>
+        </dd>
+        <dt><span>Bmi</span></dt>
+        <dd>
+          <span>{{ patient.bmi }}</span>
+        </dd>
+        <dt><span>Recent Weight Gain Loss</span></dt>
+        <dd>
+          <span>{{ patient.recentWeightGainLoss }}</span>
+        </dd>
+        <dt><span>Gain Loss Measure</span></dt>
+        <dd>
+          <span>{{ patient.gainLossMeasure }}</span>
+        </dd>
+        <dt><span>Gain Loss Time Frame</span></dt>
+        <dd>
+          <span>{{ patient.gainLossTimeFrame }}</span>
+        </dd>
+        <dt><span>Gain Loss Type</span></dt>
+        <dd>
+          <span>{{ patient.gainLossType }}</span>
+        </dd>
+        <dt><span>Supplement Taken</span></dt>
+        <dd>
+          <span>{{ patient.supplementTaken }}</span>
+        </dd>
+        <dt><span>Appetite</span></dt>
+        <dd>
+          <span>{{ patient.appetite }}</span>
+        </dd>
+        <dt><span>Physical Activity</span></dt>
+        <dd>
+          <span>{{ patient.physicalActivity }}</span>
+        </dd>
+        <dt><span>Monthly Family Income</span></dt>
+        <dd>
+          <span>{{ patient.monthlyFamilyIncome }}</span>
+        </dd>
+        <dt><span>Religion</span></dt>
+        <dd>
+          <span>{{ patient.religion }}</span>
+        </dd>
+        <dt><span>Education</span></dt>
+        <dd>
+          <span>{{ patient.education }}</span>
+        </dd>
+        <dt><span>Occupation</span></dt>
+        <dd>
+          <span>{{ patient.occupation }}</span>
+        </dd>
+        <dt><span>Living Status</span></dt>
+        <dd>
+          <span>{{ patient.livingStatus }}</span>
+        </dd>
+        <dt><span>Area</span></dt>
+        <dd>
+          <span>{{ patient.area }}</span>
+        </dd>
+        <dt><span>Estimated Energy Needs</span></dt>
+        <dd>
+          <span>{{ patient.estimatedEnergyNeeds }}</span>
+        </dd>
+        <dt><span>Calculate Energy Needs</span></dt>
+        <dd>
+          <span>{{ patient.calculateEnergyNeeds }}</span>
+        </dd>
+        <dt><span>Total K Cal</span></dt>
+        <dd>
+          <span>{{ patient.totalKCal }}</span>
+        </dd>
+        <dt><span>Carbohydrate</span></dt>
+        <dd>
+          <span>{{ patient.carbohydrate }}</span>
+        </dd>
+        <dt><span>Protein</span></dt>
+        <dd>
+          <span>{{ patient.protein }}</span>
+        </dd>
+        <dt><span>Fat</span></dt>
+        <dd>
+          <span>{{ patient.fat }}</span>
+        </dd>
+        <dt><span>Fluid</span></dt>
+        <dd>
+          <span>{{ patient.fluid }}</span>
+        </dd>
+        <dt><span>Food Restriction</span></dt>
+        <dd>
+          <span>{{ patient.foodRestriction }}</span>
+        </dd>
+        <dt><span>Nutrition State</span></dt>
+        <dd>
+          <div *ngIf="patient.nutritionState">
+            <a [routerLink]="['/nutrition-state', patient.nutritionState?.id, 'view']">{{ patient.nutritionState?.label }}</a>
+          </div>
+        </dd>
+        <dt><span>Activity Level</span></dt>
+        <dd>
+          <div *ngIf="patient.activityLevel">
+            <a [routerLink]="['/activity-level', patient.activityLevel?.id, 'view']">{{ patient.activityLevel?.label }}</a>
+          </div>
+        </dd>
+        <dt><span>Diet Natures</span></dt>
+        <dd>
+          <span *ngFor="let dietNatures of patient.dietNatures; let last = last">
+            <a [routerLink]="['/diet-nature', dietNatures?.id, 'view']">{{ dietNatures.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Supplements</span></dt>
+        <dd>
+          <span *ngFor="let supplements of patient.supplements; let last = last">
+            <a [routerLink]="['/supplements', supplements?.id, 'view']">{{ supplements.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Restricted Food Category</span></dt>
+        <dd>
+          <span *ngFor="let restrictedFoodCategory of patient.restrictedFoodCategories; let last = last">
+            <a [routerLink]="['/food-category', restrictedFoodCategory?.id, 'view']">{{ restrictedFoodCategory.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/patient', patient.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

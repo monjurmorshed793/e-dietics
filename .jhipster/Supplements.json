@@ -1,0 +1,35 @@
+{
+  "name": "Supplements",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "patient",
+      "otherEntityRelationshipName": "supplements",
+      "relationshipName": "patient",
+      "otherEntityField": "name",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "supplements",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "entityPackage": "config",
+  "changelogDate": "20211021170634"
+}

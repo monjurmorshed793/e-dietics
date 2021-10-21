@@ -1,0 +1,35 @@
+{
+  "name": "DietNature",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "patient",
+      "otherEntityRelationshipName": "dietNatures",
+      "relationshipName": "patient",
+      "otherEntityField": "name",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "diet_nature",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "entityPackage": "config",
+  "changelogDate": "20211021170635"
+}
