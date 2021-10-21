@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="patientBiochemicalTest">
+      <h2 data-cy="patientBiochemicalTestDetailsHeading"><span>Patient Biochemical Test</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ patientBiochemicalTest.id }}</span>
+        </dd>
+        <dt><span>Other</span></dt>
+        <dd>
+          <span>{{ patientBiochemicalTest.other }}</span>
+        </dd>
+        <dt><span>Value</span></dt>
+        <dd>
+          <span>{{ patientBiochemicalTest.value }}</span>
+        </dd>
+        <dt><span>Patient</span></dt>
+        <dd>
+          <div *ngIf="patientBiochemicalTest.patient">
+            <a [routerLink]="['/patient', patientBiochemicalTest.patient?.id, 'view']">{{ patientBiochemicalTest.patient?.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Biochemical Test</span></dt>
+        <dd>
+          <div *ngIf="patientBiochemicalTest.biochemicalTest">
+            <a [routerLink]="['/biochemical-test', patientBiochemicalTest.biochemicalTest?.id, 'view']">{{
+              patientBiochemicalTest.biochemicalTest?.testName
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Measurement Type</span></dt>
+        <dd>
+          <div *ngIf="patientBiochemicalTest.measurementType">
+            <a [routerLink]="['/measurement-type', patientBiochemicalTest.measurementType?.id, 'view']">{{
+              patientBiochemicalTest.measurementType?.label
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/patient-biochemical-test', patientBiochemicalTest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

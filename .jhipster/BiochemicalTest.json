@@ -1,0 +1,33 @@
+{
+  "name": "BiochemicalTest",
+  "fields": [
+    {
+      "fieldName": "testName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "measurementType",
+      "otherEntityRelationshipName": "biochemicalTest",
+      "relationshipName": "defaultMeasurementType",
+      "otherEntityField": "label"
+    }
+  ],
+  "entityTableName": "biochemical_test",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211021175816"
+}
