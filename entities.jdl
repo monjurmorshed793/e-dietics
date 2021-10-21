@@ -1,0 +1,154 @@
+enum Gender{
+    MALE(Male),
+    FEMALE(Female)
+}
+
+enum HeightMeasureType{
+    CM(cm),
+    INCH(inch),
+    FEET(ft)
+}
+
+enum WeightType{
+    UNDERWEIGHT(Underweight),
+    NORMAL(Normal),
+    OVERWEIGHT(Overweight),
+    OBESE(Obese)
+}
+
+enum GainLossType{
+    INTENTIONAL(Intentional)
+    UNINTENTIONAL(Unintentional)
+}
+
+enum AppetiteType{
+    EXCELLENT(Excellent),
+    GOOD(Good),
+    FAIR(Fair),
+    POOR(Poor)
+}
+
+enum PhysicalActivityType{
+    REGULAR(Regular),
+    SEASONAL(Seasonal)
+}
+enum ReligionType{
+    MUSLIM(Muslim),
+    HINDU(Hindu),
+    BUDDHIST(Buddhist),
+    CHRISTIANITY(Christianity),
+    JEWS(Jews),
+    OTHERS(Others)
+}
+
+enum AreaType{
+    RURAL(Rural),
+    URBAN(Urban)
+}
+
+entity FoodCategory{
+    name String,
+    description TextBlob
+}
+
+entity MeasurementType{
+    label String required,
+    description String
+}
+
+entity BiochemicalTest{
+    testName String,
+    //defaultMeasurementType measurementType,
+    description TextBlob
+}
+
+entity Supplements{
+    name String,
+    description TextBlob
+}
+
+entity DietNature{
+    name String,
+    description TextBlob
+}
+
+entity NutritionState{
+    order Integer,
+    label String required,
+    note TextBlob
+}
+
+entity ActivityLevel{
+    order Integer,
+    label String required,
+    note TextBlob
+}
+
+entity Patient{
+    name String,
+    address TextBlob,
+    hospital String,
+    admissionDate LocalDate,
+    reasonOfAdmission TextBlob,
+    wordNo String,
+    bedNo String,
+    healthCondition TextBlob,
+    mentalStatus TextBlob,
+    age Integer,
+    sex Gender,
+    weight Double,
+    weightType WeightType,
+    height Double,
+    heightMeasureType HeightMeasureType,
+    ibw Double,
+    bmi Double,
+    recentWeightGainLoss Boolean,
+    gainLossMeasure Double,
+    gainLossTimeFrame Double,
+    gainLossType GainLossType,
+    supplementTaken Boolean,
+    appetite AppetiteType,
+    physicalActivity PhysicalActivityType,
+    monthlyFamilyIncome,
+    religion ReligionType,
+    education String,
+    occupation String,
+    livingStatus String,
+    area AreaType,
+    estimatedEnergyNeeds String,
+    calculateEnergyNeeds String,
+    totalKCal Double,
+    carbohydrate Double,
+    protein Double,
+    fat Double,
+    fluid Double,
+    foodRestriction Boolean,
+}
+
+entity PatientBiochemicalTest{
+    // patient
+    // BiochemicalTest
+    other String,
+    value Double
+    // MeasurementType
+    //
+}
+
+relationship ManyToOne{
+    Patient{nutritionState(label)} to NutritionState,
+    Patient{activityLevel(label)} to ActivityLevel,
+    BiochemicalTest{defaultMeasurementType(label)} to  MeasurementType,
+    PatientBiochemicalTest{patient(name)} to Patient,
+    PatientBiochemicalTest{biochemicalTest(testName)} to BiochemicalTest,
+    PatientBiochemicalTest{measurementType(label)} to MeasurementType
+}
+
+relationship ManyToMany{
+    Patient{dietNatures(name)} to DietNature{patient(name)} ,
+    Patient{supplements(name)} to Supplements{patient(name)},
+    Patient{restrictedFoodCategory(name)} to FoodCategory(name)}
+}
+
+
+service * with serviceClass
+paginate * with pagination
