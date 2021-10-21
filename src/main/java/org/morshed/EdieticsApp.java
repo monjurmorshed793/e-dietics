@@ -8,17 +8,23 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.morshed.config.ApplicationProperties;
+import org.morshed.config.repository.ActivityLevelRepository;
+import org.morshed.patient.repository.PatientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ ApplicationProperties.class })
+@EnableMongoRepositories(basePackageClasses = { ActivityLevelRepository.class, PatientRepository.class })
 public class EdieticsApp {
 
     private static final Logger log = LoggerFactory.getLogger(EdieticsApp.class);
