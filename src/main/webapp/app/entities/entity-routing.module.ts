@@ -49,6 +49,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'PatientBiochemicalTests' },
         loadChildren: () => import('./patient-biochemical-test/patient-biochemical-test.module').then(m => m.PatientBiochemicalTestModule),
       },
+      {
+        path: 'component-navigation',
+        data: { pageTitle: 'ComponentNavigations' },
+        loadChildren: () => import('./component-navigation/component-navigation.module').then(m => m.ComponentNavigationModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

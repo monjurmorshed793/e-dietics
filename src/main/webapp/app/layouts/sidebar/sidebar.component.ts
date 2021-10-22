@@ -9,6 +9,7 @@ import { UserManagementService } from '../../admin/user-management/service/user-
 })
 export class SidebarComponent implements OnInit {
   authorities: string[] = [];
+  isNavbarCollapsed = false;
 
   constructor(private loginService: LoginService, private userService: UserManagementService) {}
 
@@ -16,5 +17,13 @@ export class SidebarComponent implements OnInit {
     this.userService.authorities().subscribe(res => {
       this.authorities = res;
     });
+  }
+
+  collapseNavbar(): void {
+    this.isNavbarCollapsed = true;
+  }
+
+  toggleNavbar(): void {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 }

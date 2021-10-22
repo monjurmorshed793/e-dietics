@@ -52,8 +52,9 @@
       "NutritionState",
       "ActivityLevel",
       "Patient",
-      "PatientBiochemicalTest"
+      "PatientBiochemicalTest",
+      "ComponentNavigation"
     ],
-    "lastLiquibaseTimestamp": 1634839102000
+    "lastLiquibaseTimestamp": 1634922905000
   }
 }

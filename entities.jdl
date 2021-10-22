@@ -46,6 +46,11 @@ enum AreaType{
     URBAN(Urban)
 }
 
+entity ComponentNavigation{
+    name String required,
+    location String required
+}
+
 entity FoodCategory{
     name String,
     description TextBlob
@@ -140,7 +145,8 @@ relationship ManyToOne{
     BiochemicalTest{defaultMeasurementType(label)} to  MeasurementType,
     PatientBiochemicalTest{patient(name)} to Patient,
     PatientBiochemicalTest{biochemicalTest(testName)} to BiochemicalTest,
-    PatientBiochemicalTest{measurementType(label)} to MeasurementType
+    PatientBiochemicalTest{measurementType(label)} to MeasurementType,
+    ComponentNavigation{parent(name)} to ComponentNavigation
 }
 
 relationship ManyToMany{
