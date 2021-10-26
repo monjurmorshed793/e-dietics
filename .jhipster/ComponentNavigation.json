@@ -10,6 +10,10 @@
       "fieldName": "location",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "roles",
+      "fieldType": "String"
     }
   ],
   "relationships": [

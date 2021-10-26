@@ -21,6 +21,7 @@ export class ComponentNavigationUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     location: [null, [Validators.required]],
+    roles: [],
     parent: [],
   });
 
@@ -80,6 +81,7 @@ export class ComponentNavigationUpdateComponent implements OnInit {
       id: componentNavigation.id,
       name: componentNavigation.name,
       location: componentNavigation.location,
+      roles: componentNavigation.roles,
       parent: componentNavigation.parent,
     });
 
@@ -110,6 +112,7 @@ export class ComponentNavigationUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       location: this.editForm.get(['location'])!.value,
+      roles: this.editForm.get(['roles'])!.value,
       parent: this.editForm.get(['parent'])!.value,
     };
   }

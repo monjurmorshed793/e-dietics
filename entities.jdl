@@ -48,7 +48,8 @@ enum AreaType{
 
 entity ComponentNavigation{
     name String required,
-    location String required
+    location String required,
+    roles String
 }
 
 entity FoodCategory{

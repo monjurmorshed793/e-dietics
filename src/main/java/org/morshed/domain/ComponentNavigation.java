@@ -27,6 +27,9 @@ public class ComponentNavigation implements Serializable {
     @Field("location")
     private String location;
 
+    @Field("roles")
+    private String roles;
+
     @DBRef
     @Field("parent")
     @JsonIgnoreProperties(value = { "parent" }, allowSetters = true)
@@ -73,6 +76,19 @@ public class ComponentNavigation implements Serializable {
         this.location = location;
     }
 
+    public String getRoles() {
+        return this.roles;
+    }
+
+    public ComponentNavigation roles(String roles) {
+        this.setRoles(roles);
+        return this;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
     public ComponentNavigation getParent() {
         return this.parent;
     }
@@ -112,6 +128,7 @@ public class ComponentNavigation implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", location='" + getLocation() + "'" +
+            ", roles='" + getRoles() + "'" +
             "}";
     }
 }

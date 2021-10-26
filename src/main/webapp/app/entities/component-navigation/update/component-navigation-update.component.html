@@ -28,6 +28,11 @@
         </div>
 
         <div class="form-group">
+          <label class="form-control-label" for="field_roles">Roles</label>
+          <input type="text" class="form-control" name="roles" id="field_roles" data-cy="roles" formControlName="roles" />
+        </div>
+
+        <div class="form-group">
           <label class="form-control-label" for="field_parent">Parent</label>
           <select class="form-control" id="field_parent" data-cy="parent" name="parent" formControlName="parent">
             <option [ngValue]="null"></option>

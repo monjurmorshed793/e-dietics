@@ -35,6 +35,7 @@
           <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="location"><span>Location</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="roles"><span>Roles</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="parent.name"><span>Parent</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
         </tr>
@@ -46,6 +47,7 @@
           </td>
           <td>{{ componentNavigation.name }}</td>
           <td>{{ componentNavigation.location }}</td>
+          <td>{{ componentNavigation.roles }}</td>
           <td>
             <div *ngIf="componentNavigation.parent">
               <a [routerLink]="['/component-navigation', componentNavigation.parent?.id, 'view']">{{ componentNavigation.parent?.name }}</a>

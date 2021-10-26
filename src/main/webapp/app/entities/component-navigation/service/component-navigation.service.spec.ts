@@ -23,6 +23,7 @@ describe('ComponentNavigation Service', () => {
       id: 'AAAAAAA',
       name: 'AAAAAAA',
       location: 'AAAAAAA',
+      roles: 'AAAAAAA',
     };
   });
 
@@ -60,6 +61,7 @@ describe('ComponentNavigation Service', () => {
           id: 'BBBBBB',
           name: 'BBBBBB',
           location: 'BBBBBB',
+          roles: 'BBBBBB',
         },
         elemDefault
       );
@@ -93,6 +95,7 @@ describe('ComponentNavigation Service', () => {
           id: 'BBBBBB',
           name: 'BBBBBB',
           location: 'BBBBBB',
+          roles: 'BBBBBB',
         },
         elemDefault
       );
@@ -147,7 +150,7 @@ describe('ComponentNavigation Service', () => {
         const componentNavigationArray: IComponentNavigation[] = [
           { id: 'ABC' },
           { id: 'CBA' },
-          { id: '33a46247-4d8b-4f26-8e41-cff4f5b38412' },
+          { id: '3a462474-d8bf-4264-a41c-ff4f5b384129' },
         ];
         const componentNavigationCollection: IComponentNavigation[] = [{ id: 'ABC' }];
         expectedResult = service.addComponentNavigationToCollectionIfMissing(componentNavigationCollection, ...componentNavigationArray);

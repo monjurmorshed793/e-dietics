@@ -5,6 +5,7 @@ import { ComponentNavigationDetailComponent } from './detail/component-navigatio
 import { ComponentNavigationUpdateComponent } from './update/component-navigation-update.component';
 import { ComponentNavigationDeleteDialogComponent } from './delete/component-navigation-delete-dialog.component';
 import { ComponentNavigationRoutingModule } from './route/component-navigation-routing.module';
+import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 
 @NgModule({
   imports: [SharedModule, ComponentNavigationRoutingModule],
@@ -13,6 +14,7 @@ import { ComponentNavigationRoutingModule } from './route/component-navigation-r
     ComponentNavigationDetailComponent,
     ComponentNavigationUpdateComponent,
     ComponentNavigationDeleteDialogComponent,
+    SidebarComponent,
   ],
   entryComponents: [ComponentNavigationDeleteDialogComponent],
 })

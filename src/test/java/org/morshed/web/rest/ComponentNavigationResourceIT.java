@@ -32,6 +32,9 @@ class ComponentNavigationResourceIT {
     private static final String DEFAULT_LOCATION = "AAAAAAAAAA";
     private static final String UPDATED_LOCATION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_ROLES = "AAAAAAAAAA";
+    private static final String UPDATED_ROLES = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/component-navigations";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -50,7 +53,10 @@ class ComponentNavigationResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static ComponentNavigation createEntity() {
-        ComponentNavigation componentNavigation = new ComponentNavigation().name(DEFAULT_NAME).location(DEFAULT_LOCATION);
+        ComponentNavigation componentNavigation = new ComponentNavigation()
+            .name(DEFAULT_NAME)
+            .location(DEFAULT_LOCATION)
+            .roles(DEFAULT_ROLES);
         return componentNavigation;
     }
 
@@ -61,7 +67,10 @@ class ComponentNavigationResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static ComponentNavigation createUpdatedEntity() {
-        ComponentNavigation componentNavigation = new ComponentNavigation().name(UPDATED_NAME).location(UPDATED_LOCATION);
+        ComponentNavigation componentNavigation = new ComponentNavigation()
+            .name(UPDATED_NAME)
+            .location(UPDATED_LOCATION)
+            .roles(UPDATED_ROLES);
         return componentNavigation;
     }
 
@@ -90,6 +99,7 @@ class ComponentNavigationResourceIT {
         ComponentNavigation testComponentNavigation = componentNavigationList.get(componentNavigationList.size() - 1);
         assertThat(testComponentNavigation.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testComponentNavigation.getLocation()).isEqualTo(DEFAULT_LOCATION);
+        assertThat(testComponentNavigation.getRoles()).isEqualTo(DEFAULT_ROLES);
     }
 
     @Test
@@ -177,7 +187,9 @@ class ComponentNavigationResourceIT {
             .jsonPath("$.[*].name")
             .value(hasItem(DEFAULT_NAME))
             .jsonPath("$.[*].location")
-            .value(hasItem(DEFAULT_LOCATION));
+            .value(hasItem(DEFAULT_LOCATION))
+            .jsonPath("$.[*].roles")
+            .value(hasItem(DEFAULT_ROLES));
     }
 
     @Test
@@ -201,7 +213,9 @@ class ComponentNavigationResourceIT {
             .jsonPath("$.name")
             .value(is(DEFAULT_NAME))
             .jsonPath("$.location")
-            .value(is(DEFAULT_LOCATION));
+            .value(is(DEFAULT_LOCATION))
+            .jsonPath("$.roles")
+            .value(is(DEFAULT_ROLES));
     }
 
     @Test
@@ -225,7 +239,7 @@ class ComponentNavigationResourceIT {
 
         // Update the componentNavigation
         ComponentNavigation updatedComponentNavigation = componentNavigationRepository.findById(componentNavigation.getId()).block();
-        updatedComponentNavigation.name(UPDATED_NAME).location(UPDATED_LOCATION);
+        updatedComponentNavigation.name(UPDATED_NAME).location(UPDATED_LOCATION).roles(UPDATED_ROLES);
 
         webTestClient
             .put()
@@ -242,6 +256,7 @@ class ComponentNavigationResourceIT {
         ComponentNavigation testComponentNavigation = componentNavigationList.get(componentNavigationList.size() - 1);
         assertThat(testComponentNavigation.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testComponentNavigation.getLocation()).isEqualTo(UPDATED_LOCATION);
+        assertThat(testComponentNavigation.getRoles()).isEqualTo(UPDATED_ROLES);
     }
 
     @Test
@@ -332,6 +347,7 @@ class ComponentNavigationResourceIT {
         ComponentNavigation testComponentNavigation = componentNavigationList.get(componentNavigationList.size() - 1);
         assertThat(testComponentNavigation.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testComponentNavigation.getLocation()).isEqualTo(DEFAULT_LOCATION);
+        assertThat(testComponentNavigation.getRoles()).isEqualTo(DEFAULT_ROLES);
     }
 
     @Test
@@ -345,7 +361,7 @@ class ComponentNavigationResourceIT {
         ComponentNavigation partialUpdatedComponentNavigation = new ComponentNavigation();
         partialUpdatedComponentNavigation.setId(componentNavigation.getId());
 
-        partialUpdatedComponentNavigation.name(UPDATED_NAME).location(UPDATED_LOCATION);
+        partialUpdatedComponentNavigation.name(UPDATED_NAME).location(UPDATED_LOCATION).roles(UPDATED_ROLES);
 
         webTestClient
             .patch()
@@ -362,6 +378,7 @@ class ComponentNavigationResourceIT {
         ComponentNavigation testComponentNavigation = componentNavigationList.get(componentNavigationList.size() - 1);
         assertThat(testComponentNavigation.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testComponentNavigation.getLocation()).isEqualTo(UPDATED_LOCATION);
+        assertThat(testComponentNavigation.getRoles()).isEqualTo(UPDATED_ROLES);
     }
 
     @Test

@@ -52,6 +52,9 @@ public class ComponentNavigationService {
                 if (componentNavigation.getLocation() != null) {
                     existingComponentNavigation.setLocation(componentNavigation.getLocation());
                 }
+                if (componentNavigation.getRoles() != null) {
+                    existingComponentNavigation.setRoles(componentNavigation.getRoles());
+                }
 
                 return existingComponentNavigation;
             })
