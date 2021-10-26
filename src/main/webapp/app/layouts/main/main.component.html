@@ -1,15 +1,28 @@
+<style>
+  app-sidenav {
+    display: flex;
+  }
+  mat-drawer-container {
+    flex: 1 1 auto;
+  }
+</style>
+
 <jhi-page-ribbon></jhi-page-ribbon>
 
 <div>
   <router-outlet name="navbar"></router-outlet>
 </div>
 <div class="d-flex flex-row justify-content-start">
-  <div style="min-width: 10%">Side nav</div>
-  <div class="container-fluid">
-    <div class="card jh-card">
-      <router-outlet></router-outlet>
-    </div>
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>Drawer content</mat-drawer>
+    <mat-drawer-content>
+      <div class="container-fluid">
+        <div class="card jh-card">
+          <router-outlet></router-outlet>
+        </div>
 
-    <jhi-footer></jhi-footer>
-  </div>
+        <jhi-footer></jhi-footer>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>

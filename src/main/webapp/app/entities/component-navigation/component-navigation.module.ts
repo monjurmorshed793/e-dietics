@@ -6,9 +6,10 @@ import { ComponentNavigationUpdateComponent } from './update/component-navigatio
 import { ComponentNavigationDeleteDialogComponent } from './delete/component-navigation-delete-dialog.component';
 import { ComponentNavigationRoutingModule } from './route/component-navigation-routing.module';
 import { SidebarComponent } from './navigation/sidebar/sidebar.component';
+import { SlideMenuModule } from 'primeng/slidemenu';
 
 @NgModule({
-  imports: [SharedModule, ComponentNavigationRoutingModule],
+  imports: [SharedModule, ComponentNavigationRoutingModule, SlideMenuModule],
   declarations: [
     ComponentNavigationComponent,
     ComponentNavigationDetailComponent,
