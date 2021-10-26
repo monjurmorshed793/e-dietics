@@ -20,6 +20,7 @@ export class ComponentNavigationUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
+    icon: [],
     location: [null, [Validators.required]],
     roles: [],
     parent: [],
@@ -80,6 +81,7 @@ export class ComponentNavigationUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: componentNavigation.id,
       name: componentNavigation.name,
+      icon: componentNavigation.icon,
       location: componentNavigation.location,
       roles: componentNavigation.roles,
       parent: componentNavigation.parent,
@@ -111,6 +113,7 @@ export class ComponentNavigationUpdateComponent implements OnInit {
       ...new ComponentNavigation(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
+      icon: this.editForm.get(['icon'])!.value,
       location: this.editForm.get(['location'])!.value,
       roles: this.editForm.get(['roles'])!.value,
       parent: this.editForm.get(['parent'])!.value,

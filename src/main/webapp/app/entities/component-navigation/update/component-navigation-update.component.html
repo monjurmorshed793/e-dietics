@@ -20,6 +20,14 @@
         </div>
 
         <div class="form-group">
+          <label class="form-control-label" for="field_name">Icon</label>
+          <input type="text" class="form-control" name="icon" id="field_icon" data-cy="icon" formControlName="icon" />
+          <div *ngIf="editForm.get('icon')!.invalid && (editForm.get('icon')!.dirty || editForm.get('icon')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('icon')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="form-control-label" for="field_location">Location</label>
           <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
           <div *ngIf="editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)">

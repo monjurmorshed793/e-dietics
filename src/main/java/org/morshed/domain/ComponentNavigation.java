@@ -23,6 +23,9 @@ public class ComponentNavigation implements Serializable {
     @Field("name")
     private String name;
 
+    @Field("icon")
+    private String icon;
+
     @NotNull(message = "must not be null")
     @Field("location")
     private String location;
@@ -61,6 +64,19 @@ public class ComponentNavigation implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public ComponentNavigation icon(String icon) {
+        this.setIcon(icon);
+        return this;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getLocation() {
